@@ -1,0 +1,482 @@
+.section {
+  position: relative;
+  padding: var(--section-gap) var(--gutter);
+}
+
+.section > .caption {
+  margin-bottom: 14px;
+}
+
+/* Capas de sección: fondo decorativo detrás, contenido delante */
+.section__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.section__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.section__inner > .caption {
+  margin-bottom: 14px;
+}
+
+/* Secciones sobre mostaza o coral: tinta más oscura para mantener el contraste */
+.section--warm {
+  color: var(--deep);
+  --teal: var(--deep);
+}
+
+/* HERO: titular rotatorio + logotipo 3D */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 92px var(--gutter) 28px;
+  overflow: clip;
+}
+
+.hero > :not(.hero__bends) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__bends {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  mask-image: linear-gradient(#000 55%, transparent);
+}
+
+.hero__eyebrow {
+  margin-bottom: 14px;
+}
+
+.hero__headline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.28em;
+  text-align: center;
+}
+
+.hero__rotator {
+  color: var(--coral);
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.hero__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  margin-top: 22px;
+}
+
+.hero__foot .lead {
+  max-width: 44ch;
+  font-size: 16px;
+}
+
+@media (max-width: 720px) {
+  .hero__foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* BANDA coral con borde en onda */
+.marquee {
+  position: relative;
+  margin: clamp(40px, 6vw, 80px) 0;
+  background: var(--coral);
+  color: var(--deep);
+}
+
+.wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: clamp(28px, 5vw, 70px);
+  color: var(--coral);
+}
+
+.wave--top {
+  bottom: calc(100% - 1px);
+}
+
+.wave--bottom {
+  top: calc(100% - 1px);
+  transform: scale(-1);
+}
+
+.marquee__track {
+  display: flex;
+  gap: 0.5em;
+  width: max-content;
+  padding: 0.16em 0 0.12em;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.marquee__track i {
+  font-style: normal;
+  color: var(--cream);
+}
+
+/* WORK */
+.work__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 10px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work__empty {
+  margin-top: 28px;
+  text-transform: uppercase;
+}
+
+.work__more {
+  margin-top: 28px;
+}
+
+.card {
+  display: block;
+  padding: 12px;
+  border-radius: var(--radius-card);
+  background: var(--card);
+}
+
+.card .tilted-card {
+  margin: 0;
+}
+
+.card__cover {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--teal);
+  color: var(--canvas);
+  overflow: hidden;
+}
+
+.card__cover--animation {
+  background: var(--coral);
+  color: var(--deep);
+}
+.card__cover--texture {
+  background: var(--mustard);
+  color: var(--deep);
+}
+
+.card__cover span {
+  font-size: 7rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover .card__cover :is(span, img) {
+    transform: scale(1.06);
+  }
+}
+
+.card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.card__meta h3 {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.card__meta .badge {
+  background: var(--canvas);
+}
+
+/* VISOR: bloque oscuro fijado mientras avanzan los pasos */
+.showcase {
+  position: relative;
+  height: 280svh;
+  margin: 72px 0;
+  background: var(--deep);
+  color: var(--cream);
+}
+
+/* Borde de escalón de bloques, como un terreno */
+.steps-edge {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='288' height='48' shape-rendering='crispEdges'%3E%3Cpath fill='%23124b4c' d='M0 24h24V0h24v24h24v24H0zM72 48V24h24V0h48v24h24v24zM168 48V24h24v24zM192 48V0h24v24h24V0h24v24h24v24z'/%3E%3C/svg%3E")
+    repeat-x left bottom / 288px 48px;
+}
+
+.steps-edge--top {
+  bottom: calc(100% - 1px);
+}
+
+.steps-edge--bottom {
+  top: calc(100% - 1px);
+  transform: scaleY(-1);
+}
+
+.showcase__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(20px, 4vw, 56px);
+  align-items: center;
+  padding: 84px var(--gutter) 28px;
+  overflow: clip;
+}
+
+.showcase__pin > :not(.showcase__cubes) {
+  position: relative;
+  z-index: 1;
+}
+
+.showcase__cubes {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.showcase .viewer--full {
+  background: transparent;
+  border: 1.5px solid color-mix(in srgb, var(--cream) 30%, transparent);
+}
+
+.showcase .viewer__bar {
+  background: color-mix(in srgb, var(--deep) 82%, transparent);
+}
+
+.showcase__copy .caption {
+  margin-bottom: 14px;
+}
+
+.showcase__steps {
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.showcase__steps li {
+  padding: 16px 0;
+  border-top: 3px dotted var(--mustard);
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.showcase__steps li.is-active {
+  opacity: 1;
+}
+
+.showcase__steps h3 {
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.showcase__steps p {
+  max-width: 34ch;
+  margin-top: 4px;
+  font-size: 16px;
+}
+
+.showcase__viewer {
+  height: 100%;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .showcase {
+    height: auto;
+  }
+  .showcase__pin {
+    position: static;
+    height: auto;
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--section-gap) var(--gutter);
+  }
+  .showcase__steps li {
+    opacity: 1;
+  }
+  .showcase__viewer {
+    height: 62svh;
+  }
+}
+
+/* STUDIO */
+.about {
+  overflow: clip;
+}
+
+.about__leaf {
+  right: -40px;
+  top: 40px;
+  width: clamp(180px, 26vw, 380px);
+  rotate: 24deg;
+}
+
+.about__body {
+  max-width: 52ch;
+  margin-top: 28px;
+}
+
+.about__services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 10px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__services li {
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background: var(--cream);
+}
+
+.about__services h3 {
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.about__services p {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+/* CONTACT */
+.contact .lead {
+  margin-top: 24px;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* PIE */
+.footer {
+  color: var(--deep);
+}
+
+.footer .dotted {
+  border-color: var(--deep);
+}
+
+.footer__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px var(--gutter) 28px;
+}
+
+/* PÁGINA DE PIEZA */
+.piece {
+  padding: 96px var(--gutter) var(--section-gap);
+}
+
+.piece__back {
+  margin-bottom: 28px;
+}
+
+.piece__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr);
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.piece__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.piece__viewer {
+  height: min(72svh, 720px);
+}
+
+.piece__media {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.piece__media > * {
+  width: 100%;
+  border-radius: var(--radius-card);
+  background: var(--card);
+}
+
+.piece__media img {
+  image-rendering: pixelated;
+}
+
+.piece__next {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: var(--section-gap);
+  padding-top: 24px;
+  border-top: 3px dotted var(--mustard);
+}
+
+@media (max-width: 720px) {
+  .piece__head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .piece__viewer {
+    height: 62svh;
+  }
+}

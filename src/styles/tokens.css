@@ -1,0 +1,21 @@
+/* Paleta medida del logo de ClayPanda; sistema (píldoras, punteados, sin sombras) del DESIGN.md. */
+:root {
+  --canvas: #f5e6c9;
+  --card: #ecdbb8;
+  --cream: #fdefd4;
+  --deep: #124b4c;
+  --teal: #176667;
+  --coral: #ea6e4a;
+  --mustard: #d9a34d;
+
+  --ink: var(--teal);
+  --ink-soft: color-mix(in srgb, var(--teal) 72%, var(--canvas));
+
+  --font: "Fredoka Variable", "Fredoka", system-ui, sans-serif;
+
+  --gutter: clamp(16px, 4vw, 56px);
+  --section-gap: clamp(80px, 11vw, 120px);
+  --pill: 9999px;
+  --radius-card: 6px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

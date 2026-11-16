@@ -1,0 +1,105 @@
+.viewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 320px;
+}
+
+.viewer__canvas {
+  position: absolute !important;
+  inset: 0;
+  cursor: grab;
+}
+
+.viewer__canvas:active {
+  cursor: grabbing;
+}
+
+.viewer--full {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card);
+  background: var(--deep);
+  color: var(--cream);
+  overflow: hidden;
+}
+
+/* En el visor completo el canvas ocupa lo que deja libre la barra */
+.viewer--full .viewer__canvas,
+.viewer--full .viewer__fallback {
+  position: relative !important;
+  flex: 1 1 0;
+  height: auto !important;
+  min-height: 0;
+}
+
+.viewer__status,
+.viewer__note {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  right: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.viewer__note {
+  opacity: 0.7;
+}
+
+.viewer__status + .viewer__note,
+.viewer__note + .viewer__note {
+  top: 36px;
+}
+
+.viewer__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.viewer__fallback img {
+  max-height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.viewer__bar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  padding: 12px 16px;
+  border-top: 2px dotted color-mix(in srgb, var(--cream) 45%, transparent);
+  background: var(--deep);
+}
+
+.viewer__group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.viewer__group .caption {
+  margin-right: 4px;
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .viewer__bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .viewer__group {
+    flex-wrap: nowrap;
+  }
+}

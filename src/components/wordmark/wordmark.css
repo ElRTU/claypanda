@@ -1,0 +1,52 @@
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+}
+
+.wordmark__stage {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 220px;
+}
+
+.wordmark__stage > div {
+  position: absolute !important;
+  inset: 0;
+}
+
+.wordmark__picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.wordmark__picker .btn {
+  background: color-mix(in srgb, var(--canvas) 80%, transparent);
+  text-transform: none;
+}
+
+.wordmark__key {
+  min-width: 36px;
+  padding: 0 10px;
+  font-size: 15px;
+}
+
+.wordmark__picker .btn[aria-pressed="true"] {
+  background: var(--teal);
+  color: var(--cream);
+}
+
+.wordmark--flat {
+  justify-content: center;
+  font-size: clamp(3.4rem, 15vw, 13rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}

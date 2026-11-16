@@ -1,0 +1,294 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  transition: background-color 0.9s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Tipografía a escala de póster */
+.display {
+  font-size: clamp(3.4rem, 14vw, 12.5rem);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.heading-lg {
+  font-size: clamp(2.8rem, 9vw, 6.3rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.016em;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 34ch;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+/* Líneas que suben al entrar en pantalla */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.reveal-line > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 0.9s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.is-in .reveal-line > span {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-line > span {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Divisor punteado */
+.dotted {
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: 3px dotted var(--mustard);
+}
+
+/* Botones y etiquetas: siempre píldora */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1.5px solid var(--teal);
+  border-radius: var(--pill);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    transform 0.15s var(--ease-out),
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--fill {
+  background: var(--teal);
+  color: var(--cream);
+}
+
+.btn--coral {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: var(--deep);
+}
+
+.btn--on-deep {
+  border-color: var(--cream);
+  color: var(--cream);
+}
+
+.btn--on-deep.is-active,
+.btn--on-deep[aria-pressed="true"] {
+  background: var(--cream);
+  color: var(--deep);
+}
+
+.btn--sm {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 12px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (hover: hover) {
+  .btn:not(.btn--fill, .btn--coral, .btn--on-deep):hover {
+    background: var(--teal);
+    color: var(--cream);
+  }
+  .btn--fill:hover {
+    background: var(--deep);
+  }
+  .btn--on-deep:hover {
+    background: var(--cream);
+    color: var(--deep);
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--pill);
+  background: var(--teal);
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge--soft {
+  background: var(--card);
+  color: var(--teal);
+}
+
+.badge--coral {
+  background: var(--coral);
+  color: var(--deep);
+}
+
+/* Navegación */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px var(--gutter);
+  pointer-events: none;
+}
+
+.nav > * {
+  pointer-events: auto;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 16px 4px 4px;
+  border-radius: var(--pill);
+  background: var(--canvas);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nav__brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.nav__links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav__links .btn:not(.btn--fill) {
+  background: var(--canvas);
+}
+
+@media (hover: hover) {
+  .nav__links .btn:not(.btn--fill):hover {
+    background: var(--teal);
+  }
+}
+
+@media (max-width: 720px) {
+  .nav__links .btn:not(.btn--fill) {
+    display: none;
+  }
+}
+
+/* Hojas de fondo */
+.leaves {
+  position: absolute;
+  pointer-events: none;
+  color: var(--teal);
+  opacity: 0.07;
+}
