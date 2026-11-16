@@ -6,13 +6,14 @@ import { data } from "../lib/data.ts";
 import { gsap, prefersReducedMotion, ScrollTrigger, scrollToTarget, useSmoothScroll } from "../lib/scroll.ts";
 import type { Piece } from "../lib/types.ts";
 import ClickSpark from "../reactbits/ClickSpark.tsx";
-import ColorBends from "../reactbits/ColorBends.tsx";
 import Cubes from "../reactbits/Cubes.tsx";
 import DotGrid from "../reactbits/DotGrid.tsx";
 import RotatingText from "../reactbits/RotatingText.tsx";
 import TiltedCard from "../reactbits/TiltedCard.tsx";
 import "../styles/home.css";
 
+// three.js queda fuera del paquete inicial: todo lo que lo usa se carga aparte.
+const ColorBends = lazy(() => import("../reactbits/ColorBends.tsx"));
 const Viewer = lazy(() => import("../components/viewer/Viewer.tsx"));
 const Wordmark3D = lazy(() => import("../components/wordmark/Wordmark3D.tsx"));
 
@@ -118,14 +119,16 @@ export default function Home() {
           {/* HERO */}
           <section className="hero" id="top" data-bg="#f5e6c9">
             <div className="hero__bends" aria-hidden="true">
-              <ColorBends
-                colors={["#ea6e4a", "#d9a34d", "#176667", "#fdefd4"]}
-                speed={0.14}
-                mouseInfluence={0.35}
-                parallax={0.3}
-                noise={0}
-                intensity={1.2}
-              />
+              <Suspense fallback={null}>
+                <ColorBends
+                  colors={["#ea6e4a", "#d9a34d", "#176667", "#fdefd4"]}
+                  speed={0.14}
+                  mouseInfluence={0.35}
+                  parallax={0.3}
+                  noise={0}
+                  intensity={1.2}
+                />
+              </Suspense>
             </div>
             <p className="caption hero__eyebrow">{hero.eyebrow}</p>
             <h1 className="heading-lg hero__headline">
